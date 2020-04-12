@@ -10,12 +10,12 @@
 * [ ] savo projekto puslapis
   * [ ] projekto redagavimas
   * [ ] komentaru istrinimas
-* [ ] profilio puslapis lankytojams
+* [x] profilio puslapis lankytojams
 * [ ] projektu puslapis
   * [ ] filtracija
-  * [ ] puslapiavimas
+  * [x] puslapiavimas
   * [ ] paieska pagal ivesta zodi  
-* [ ] projekto puslapis lankytojams
+* [x] projekto puslapis lankytojams
   * [ ] komentaru sukurimas
   * [ ] patinka/nepatinka
 

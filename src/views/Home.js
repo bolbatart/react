@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, Container, Row, Col } from "reactstrap";
 
-import Header from '../components/Header/Header';
-import NavBar from '../components/Header/NavBar';
+import Header from '../components/Headers/HomeHeader';
+import NavBar from '../components/Navbar/NavBar';
 import Footer from '../components/Footer/Footer'
 
 class Home extends React.Component {
