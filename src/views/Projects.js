@@ -6,11 +6,8 @@ import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 
 // core components
 import Navbar from "../components/Navbar/NavBar";
-import ProjectsCarousel from "../components/ProfilePage/ProjcetsCarousel"
 import Footer from "../components/Footer/Footer";
-import ProjectCard from './../components/Projects/ProjectCard';
 import ProjectsListHeader from '../components/Headers/ProjectsListHeader';
-import ProjectsListCard from './../components/Projects/ProjectsListCard';
 import Pagination from './../components/Pagination';
 import ProjectsList from './../components/Projects/ProjectsList';
 
@@ -20,7 +17,7 @@ function Projects() {
   
   // pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(10);
+  const [postsPerPage] = useState(10);
   // get current posts
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -39,14 +36,24 @@ function Projects() {
   }, []);
 
 
+  const handleFilterSubmit = ({area, availablePosition, location, nameKeyWord}) => {
+    axios.get('http://localhost:3000/projects/' + area + '/' + availablePosition + '/' + location + '/' + nameKeyWord)
+      .then(res => {
+        setProjects(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
   // styles
   const blackText = {
     color:'black', 
-    'font-weight':'400'
+    fontWeight:'400'
   }
   const ulStyle = {
-    'list-style-type':'none', 
-    'list-style-position':'inside', 
+    listStyleType:'none', 
+    listStylePosition:'inside', 
     margin:'0', 
     padding: '0rem', 
     color:'black', 
@@ -55,7 +62,7 @@ function Projects() {
   return (
     <>
       <Navbar />
-      <ProjectsListHeader />
+      <ProjectsListHeader handleSubmit={handleFilterSubmit} />
       <div>
         <Container>
           <Row style={{marginTop: '4rem', marginBottom:'4 rem'}}>

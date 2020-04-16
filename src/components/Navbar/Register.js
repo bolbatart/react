@@ -109,7 +109,7 @@ class Register extends Component {
           <Modal.Title>Sign Up</Modal.Title>
         </Modal.Header>
 
-        <Modal.Body style={{'font-weight': '400'}}>
+        <Modal.Body style={{fontWeight: '400'}}>
           <form>
             <div className="form-group">
               <label htmlFor="exampleInputEmail1">Email address<small style={{'color':'red'}}>*</small></label>

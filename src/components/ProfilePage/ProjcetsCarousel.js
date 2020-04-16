@@ -32,25 +32,7 @@ import {
 
 
 import ProjectCard from './../Projects/ProjectCard';
-// core components
 
-const items = [
-  {
-    src: require("../../assets/img/soroush-karimi.jpg"),
-    altText: "Somewhere",
-    caption: "Somewhere"
-  },
-  {
-    src: require("../../assets/img/federico-beccari.jpg"),
-    altText: "Somewhere else",
-    caption: "Somewhere else"
-  },
-  {
-    src: require("../../assets/img/joshua-stannard.jpg"),
-    altText: "Here it is",
-    caption: "Here it is"
-  }
-];
 
 function SectionCarousel(props) {
   const [activeIndex, setActiveIndex] = React.useState(0);
@@ -102,7 +84,7 @@ function SectionCarousel(props) {
                         onExited={onExited}
                         key={project._id}
                       >
-                        <ProjectCard project={project} />
+                        <ProjectCard fromMyProfile={props.fromMyProfile} project={project} />
                       </CarouselItem>
                     );
                   })}

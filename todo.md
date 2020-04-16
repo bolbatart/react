@@ -3,22 +3,21 @@
 * [x] login, logout
 * [x] registracija
 * [x] pamirsto slaptazodzio atkurimas
-* [ ] savo profilio puslapis
-  * [ ] profilio redagavimas
-  * [ ] projekto sukurimas
-  * [ ] projekto istrinimas
+* [x] savo profilio puslapis
+  * [x] profilio redagavimas
+  * [x] projekto sukurimas
+  * [x] projekto istrinimas
 * [ ] savo projekto puslapis
   * [ ] projekto redagavimas
   * [ ] komentaru istrinimas
 * [x] profilio puslapis lankytojams
-* [ ] projektu puslapis
-  * [ ] filtracija
+* [x] projektu puslapis
+  * [x] filtracija
   * [x] puslapiavimas
-  * [ ] paieska pagal ivesta zodi  
+  * [x] paieska pagal ivesta zodi  
 * [x] projekto puslapis lankytojams
   * [ ] komentaru sukurimas
   * [ ] patinka/nepatinka
-
 
 
 

@@ -1,11 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+
 import {
   Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Modal } from 'react-bootstrap';
+import { responseInterceptor } from './../../interceptor';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../store/actions/auth/logout';
+
+
 
 const ProjectCard = (props) => {
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const [deleteError, setDeleteError] = useState('')
+
+  function deleteProject() {
+    responseInterceptor();
+    axios.delete('http://localhost:3000/projects/delete/' + props.project._id, { withCredentials:true })
+      .then(res => {
+        console.log(res.data)
+        setShowDeleteModal(false)
+      })
+      .catch(err => {
+        console.log('error')
+      })
+  }
+  
   return (
     <div style={{marginBottom:'3rem'}}>
       <Container className="themed-container" fluid={true} >
@@ -13,15 +35,48 @@ const ProjectCard = (props) => {
           <Col md='6'>
             <img src={require("../../assets/img/home-page.jpg")} alt="asd"/>
           </Col>
-          <Col md='6'>
+          <Col md='4' xs='9' sm='9'>
             <h5>Professionals needed:</h5>
-            <ul style={{'list-style-type':'none', color:'black', fontWeight:'400'}}>
+            <ul style={{listStyleType:'none', color:'black', fontWeight:'400'}}>
               {props.project.professionalsNeeded &&
               props.project.professionalsNeeded.map(prof =>
                 <li key={prof}>{prof}</li>
               )}
             </ul>
           </Col>
+          {props.fromMyProfile && 
+            <div className='col-auto'>
+              {/* Edit */}
+              <i 
+                class="fa fa-pencil fa-2x" 
+                style={{marginRight: '1rem'}} 
+                aria-hidden="true" 
+                // onClick={}
+                />
+              
+              {/* Delete */}
+              <i 
+                class="fa fa-trash-o fa-2x"
+                type='btn'
+                aria-hidden="true" 
+                onClick={() => setShowDeleteModal(true)}
+              />
+              <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(true)}>
+                <Modal.Body>
+                  <p style={{margin:'2rem', fontWeight:'400'}}>Are you sure you want to delete this project "{props.project.name}"?</p>
+                  <p style={{margin:'2rem', color:'red'}}> {deleteError} </p>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+                    Cancel
+                  </Button>
+                  <Button variant="primary" onClick={deleteProject}>
+                    Yes
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+            </div>
+          }
         </Row>
           <h3>Project name</h3>
           <CardText>

@@ -1,6 +1,9 @@
-import React from "react";
-import { Row } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Row, Modal } from 'react-bootstrap';
+import axios from 'axios';
+import { responseInterceptor } from '../../interceptor';
 
+import history from '../../history';
 
 import {
   Button,
@@ -19,6 +22,27 @@ import {
 
 
 function ProfilePageHeader(props) {
+  const [profile, setProfile] = useState({
+    userId: props.user._id,
+    firstName: '',
+    lastName:'',
+    bio: ''
+  });
+
+  const [showModal, setShowModal] = useState(false);
+
+  function editProfile() {
+    const dataToSend = profile
+    console.log(dataToSend)
+    responseInterceptor()
+    axios.post('http://localhost:3000/users/edit-profile/', profile, {withCredentials:true})
+      .then(res => {
+        window.location.reload(false);
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  } 
 
   return (
     <>
@@ -39,7 +63,6 @@ function ProfilePageHeader(props) {
                     <h4 className="title">
                       {props.user.firstName} {props.user.lastName}
                     </h4>
-                    <h6 style={{color:"white"}} className="description">Music Producer</h6>
                   </div>  
                 </Col>
               </Row>
@@ -52,6 +75,42 @@ function ProfilePageHeader(props) {
               </Row>
             </Col>
           </Row>
+          {props.fromMyProfile &&
+            <React.Fragment>
+            <Button onClick={() => setShowModal(true)} color="warning" style={{float: 'right', color:'black', marginBottom:'2rem'}} >Edit profile</Button>
+
+            <Modal show={showModal} onHide={() => setShowModal(false)}>
+              <Modal.Header>
+                <Modal.Title>Edit profile</Modal.Title>
+              </Modal.Header>
+              <Modal.Body style={{fontWeight: '400'}}>
+                <form>
+                  <div className="form-group">
+                    <label htmlFor="firstName">First name</label>
+                    <input onChange={e => setProfile({...profile, firstName: e.target.value})} type="text" className="form-control" id="projectName" aria-describedby="passwordHelp" />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="lastName">Last name</label>
+                    <input type="text" onChange={ e => setProfile({...profile, lastName: e.target.value}) } className="form-control" id="lastName" />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="bio">Abuot you</label>
+                    <textarea onChange={ e => setProfile({...profile, bio: e.target.value}) } className="form-control" id="bioTextArea" rows={3} defaultValue={""} />
+                  </div>
+                </form>
+              </Modal.Body>
+              <Modal.Footer style={{margin: 'auto',}}>
+                <Button onClick={editProfile} className="btn-round" color="success" variant="primary" >
+                  Submit
+                </Button>
+                <Button onClick={() => setShowModal(false)} className="btn-round" color="danger" variant="secondary" >
+                  Close
+                </Button>              
+              </Modal.Footer>
+            </Modal>
+          </React.Fragment>
+            // EDIT MODAL
+          }
         </Container>
       </div>  
     </>

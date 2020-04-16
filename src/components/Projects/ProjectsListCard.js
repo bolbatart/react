@@ -1,5 +1,5 @@
 import React from 'react';
-
+import history from './../../history'
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 
 
@@ -7,11 +7,11 @@ const ProjectsListCard = ({ project }) => {
   
   const blackText = {
     color:'black', 
-    'font-weight':'400'
+    fontWeight:'400'
   }
   const ulStyle = {
-    'list-style-type':'none', 
-    'list-style-position':'inside', 
+    listStyleType:'none', 
+    listStylePosition:'inside', 
     margin:'0', 
     padding: '0rem', 
     color:'black', 
@@ -27,24 +27,35 @@ const ProjectsListCard = ({ project }) => {
           <Col>
             <h4>Positions available</h4>
             <ul style={ulStyle}>
-              <li>Designer</li>
-              <li>Back-end developer</li>
+              {project.professionalsNeeded && project.professionalsNeeded.map(pos => {
+                return (
+                  <li key={pos}> {pos} </li>
+                )
+              })}
             </ul>
           </Col>
           <Col>
             <h4>Area</h4>
             <ul style={ulStyle}>
-              <li>Designer</li>
-              <li>Back-end developer</li>
+              {project.area && project.area.map(area => {
+                  return (
+                    <li key={area}> {area} </li>
+                  )
+                })}
             </ul>
           </Col>
         </Row>
         <Row style={{marginTop:'3rem'}}>
           <Col>
-            <p>Location</p>
+            <p> {project.location} </p>
           </Col>
           <Col>
-            <Button className='float-right' variant="primary">Find out more</Button>
+            <Button 
+              className='float-right' 
+              variant="primary" 
+              onClick={() => history.push('/projects/' + project._id)} >
+                Find out more
+            </Button>
           </Col>
         </Row>
       </Card.Body>

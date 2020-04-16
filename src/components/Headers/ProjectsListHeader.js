@@ -4,24 +4,29 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 
 
-function ProjectsHeader(props) {
+function ProjectsHeader({ handleSubmit }) {
 
   const [filters, setFilters] = useState({});
-  const [params, setParams] = useState({});
+  const [params] = useState({
+    area: 'any',
+    availablePosition: 'any',
+    location: 'any',
+    nameKeyWord: 'any'
+  });
 
   useEffect(() => {
     axios.get('http://localhost:3000/projects/filter-parameters')
       .then(res => {
         setFilters(res.data)
-        console.log(res.data)
       })
       .catch(err => console.log(err))
   }, []);
 
+    
 
 
   // styles
-  const whiteText = {color:'white', 'font-weight':'400'}
+  const whiteText = {color:'white', fontWeight:'400'}
   const formRows = {marginBottom: '1rem'}
   return (
     <>
@@ -38,14 +43,14 @@ function ProjectsHeader(props) {
                 <Row style={formRows}>
                   <Col>
                     <Form.Label style={whiteText}>Search</Form.Label>
-                    <Form.Control placeholder="Key words" />
+                    <Form.Control placeholder="Key words" onChange={e => params.nameKeyWord = e.target.value} />
                   </Col>
                   <Col>
                     <Form.Label style={whiteText}>Project area</Form.Label>
-                    <Form.Control as="select" >
+                    <Form.Control as="select" onChange={e => params.area = e.target.value} >
                       <option>any</option>
                       {filters.areas && filters.areas.map(area => 
-                        <option>{area}</option>
+                        <option key={area}>{area}</option>
                         )}
                     </Form.Control>
                   </Col>
@@ -53,26 +58,26 @@ function ProjectsHeader(props) {
                 <Row style={formRows}>
                   <Col>
                     <Form.Label style={whiteText}>Available positions</Form.Label>
-                    <Form.Control as="select" >
+                    <Form.Control as="select" onChange={e => params.availablePosition=e.target.value} >
                       <option>any</option>
                       {filters.availablePositions && filters.availablePositions.map(availablePosition => 
-                        <option>{availablePosition}</option>
+                        <option key={availablePosition}>{availablePosition}</option>
                         )}
                     </Form.Control>                  
                   </Col>
                   <Col>
                     <Form.Label style={whiteText}>Country</Form.Label>
-                    <Form.Control as="select" >
+                    <Form.Control as="select" onChange={e => params.location=e.target.value} >
                       <option>any</option>
                       {filters.locations && filters.locations.map(location => 
-                        <option>{location}</option>
+                        <option key={location}>{location}</option>
                         )}
                     </Form.Control>
                   </Col>
                 </Row>
                 <Row style={formRows}>
                   <Col>
-                    <Button className='float-right' variant="primary" type="submit">
+                    <Button onClick={() => handleSubmit(params)} className='float-right' variant="primary">
                       Submit
                     </Button>
                   </Col>

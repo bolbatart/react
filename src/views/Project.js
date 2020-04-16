@@ -25,7 +25,7 @@ function Project(props){
   }, []);
 
 
-  const blackText = {color:'black', 'font-weight':'400'}
+  const blackText = {color:'black', fontWeight:'400'}
   return (
     <div>
       <NavBar />
@@ -40,7 +40,7 @@ function Project(props){
         <Row style={{marginTop:'2rem'}}>
           <Col md={{ size: 5, order: 2 }} >
             <h4 style={blackText} >Job Positions</h4>
-            <ul style={{'list-style-type':'none', color:'black', fontWeight:'400'}}>
+            <ul style={{listStyleType:'none', color:'black', fontWeight:'400'}}>
               {
                 project.professionalsNeeded &&
                 project.professionalsNeeded.map(prof => <li key={prof}>{prof}</li>)

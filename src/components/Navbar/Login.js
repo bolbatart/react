@@ -96,7 +96,7 @@ class Login extends Component {
             <Modal.Header>
               <Modal.Title>Log In</Modal.Title>
             </Modal.Header>
-            <Modal.Body style={{'font-weight': '400'}}>
+            <Modal.Body style={{fontWeight: '400'}}>
               <form>
                 <div className="form-group">
                   <label htmlFor="exampleInputEmail1">Email address</label>
@@ -149,7 +149,7 @@ class Login extends Component {
             <Modal.Header>
               <Modal.Title>Forgot Password</Modal.Title>
             </Modal.Header>
-            <Modal.Body style={{'font-weight': '400'}}>
+            <Modal.Body style={{fontWeight: '400'}}>
               <form>
                 <div className="form-group">
                   <label htmlFor="exampleInputEmail1">Email address</label>

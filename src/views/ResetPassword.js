@@ -52,7 +52,7 @@ class ResetPassword extends React.Component {
           <Row className="justify-content-md-center">
             <Col lg='7' sm='12'>
               <h1>Reset Your Password</h1>
-              <form style={{'font-weight': '400', color: 'black'}}>
+              <form style={{fontWeight: '400', color: 'black'}}>
                 <div className="form-group">
                   <label htmlFor="passwordInput1">New Password</label>
                   <input type="password" value={this.state.password} onChange={this.handlePasswordChange} className="form-control" id="passwordInput1" aria-describedby="passwordHelp" />
