@@ -8,7 +8,7 @@
   * [x] projekto sukurimas
   * [x] projekto istrinimas
 * [ ] savo projekto puslapis
-  * [ ] projekto redagavimas
+  * [x] projekto redagavimas
   * [ ] komentaru istrinimas
 * [x] profilio puslapis lankytojams
 * [x] projektu puslapis

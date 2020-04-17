@@ -3,6 +3,10 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import history from '../history';
 import '../index.css';
+import { responseInterceptor } from '../interceptor';
+import { removeFromReduxStateProject } from '../store/actions/project/projectAction'
+
+
 
 // reactstrap components
 import {
@@ -27,6 +31,7 @@ function MyProfile(props) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    props.removeProjectFromReduxStore()
     if(props.loggedIn) {
       axios.get('http://localhost:3000/users/profile/' + props.loggedIn)
         .then( res => {
@@ -102,4 +107,10 @@ const mapStateToProps = state => {
   };
 }
 
-export default connect(mapStateToProps)(MyProfile);
+const mapDispatchToProps = dispatch => {
+  return {
+    removeProjectFromReduxStore: () => { dispatch(removeFromReduxStateProject()) }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyProfile);

@@ -31,7 +31,7 @@ const CreateProject = (props) => {
     responseInterceptor();
     axios.post('http://localhost:3000/projects/create', input, {withCredentials:true})
       .then( res => {
-        console.log(res)
+        window.close();
       })
       .catch( err => {
         console.log(err)

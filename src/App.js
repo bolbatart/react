@@ -14,6 +14,7 @@ import Project from './views/Project';
 import Projects from './views/Projects';
 import MyProfile from './views/MyProfile';
 import CreateProject from './views/CreateProject';
+import EditProject from './views/EditProject';
 
 
 class App extends React.Component {
@@ -31,6 +32,7 @@ class App extends React.Component {
               <Route path='/projects' exact component={Projects} />
               <Route path='/my-profile' exact component={MyProfile} />
               <Route path='/create-project' exact component={CreateProject} />
+              <Route path='/edit-project' exact component={EditProject} />
             </Router>
           </div>
         </PersistGate>

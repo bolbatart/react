@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import history from '../../history';
+import { addToReduxStateProject } from '../../store/actions/project/projectAction'
+import { connect } from "react-redux";
 
 import {
   Card, CardImg, CardText, CardBody,
@@ -20,12 +23,16 @@ const ProjectCard = (props) => {
     responseInterceptor();
     axios.delete('http://localhost:3000/projects/delete/' + props.project._id, { withCredentials:true })
       .then(res => {
-        console.log(res.data)
-        setShowDeleteModal(false)
+        window.location.reload(false);
       })
       .catch(err => {
         console.log('error')
       })
+  }
+
+  function onEdit() {
+    props.addProjectToReduxStore(props.project)
+    history.push('/edit-project')
   }
   
   return (
@@ -51,7 +58,7 @@ const ProjectCard = (props) => {
                 class="fa fa-pencil fa-2x" 
                 style={{marginRight: '1rem'}} 
                 aria-hidden="true" 
-                // onClick={}
+                onClick={onEdit}
                 />
               
               {/* Delete */}
@@ -84,7 +91,7 @@ const ProjectCard = (props) => {
           </CardText>
           <Row>
             <Col>
-              <Button>More Info</Button>
+              <Button onClick={() => history.push('/projects/' + props.project._id)} >More Info</Button>
             </Col>
             <div className="col-auto">
               <p>Location: {props.project.location}</p>
@@ -95,4 +102,10 @@ const ProjectCard = (props) => {
   );
 };
 
-export default ProjectCard;
+const mapDispatchToProps = dispatch => {
+  return {
+    addProjectToReduxStore: (project) => { dispatch(addToReduxStateProject(project)) }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(ProjectCard);

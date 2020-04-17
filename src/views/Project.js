@@ -11,13 +11,11 @@ import axios from 'axios';
 function Project(props){
   
   const [project, setProject] = useState({});
-  // const [profNeeded, setProfNeeded] = useState([]);
 
   useEffect(() => {
     axios.get('http://localhost:3000' + window.location.pathname)
       .then( res => {
         setProject(res.data)
-        // setProfNeeded(res.data.professionalsNeeded)
       })
       .catch( err => {
         console.log(err)
@@ -59,7 +57,13 @@ function Project(props){
             <h4 style={blackText}>
               Comments
             </h4>
-            ...
+            <ul>
+              {project.comments && project.comments.map( (commentObj, index) => {
+                return (
+                  <li key={index}> {commentObj.comment} </li>
+                )        
+              })}
+            </ul>
           </Col>
         </Row>
       </Container>
