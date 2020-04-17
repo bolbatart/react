@@ -7,16 +7,16 @@
   * [x] profilio redagavimas
   * [x] projekto sukurimas
   * [x] projekto istrinimas
-* [ ] savo projekto puslapis
+* [x] savo projekto puslapis
   * [x] projekto redagavimas
-  * [ ] komentaru istrinimas
+  * [x] komentaru istrinimas
 * [x] profilio puslapis lankytojams
 * [x] projektu puslapis
   * [x] filtracija
   * [x] puslapiavimas
   * [x] paieska pagal ivesta zodi  
 * [x] projekto puslapis lankytojams
-  * [ ] komentaru sukurimas
+  * [x] komentaru sukurimas
   * [ ] patinka/nepatinka
 
 
