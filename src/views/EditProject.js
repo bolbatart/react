@@ -66,7 +66,7 @@ const EditProject = (props) => {
 
 
   function onSubmit() {
-      responseInterceptor();
+      // responseInterceptor();
       axios.put('http://localhost:3000/projects/edit', input, {withCredentials:true})
         .then( res => {
             history.push('/my-profile')

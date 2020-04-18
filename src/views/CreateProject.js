@@ -28,7 +28,7 @@ const CreateProject = (props) => {
   }, []);
 
   function onSubmit() {
-    responseInterceptor();
+    // responseInterceptor();
     axios.post('http://localhost:3000/projects/create', input, {withCredentials:true})
       .then( res => {
         window.close();

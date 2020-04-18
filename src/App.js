@@ -4,6 +4,7 @@ import history from './history';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import axios from 'axios';
+import { responseInterceptor } from './interceptor';
 
 import { store, persistor } from './store/store';
 
@@ -18,6 +19,11 @@ import EditProject from './views/EditProject';
 
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    responseInterceptor();
+  }
+  
 
   render () {
     return (

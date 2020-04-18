@@ -24,17 +24,16 @@ import {
 function ProfilePageHeader(props) {
   const [profile, setProfile] = useState({
     userId: props.user._id,
-    firstName: '',
-    lastName:'',
-    bio: ''
+    firstName: props.user.firstName,
+    lastName: props.user.lastName,
+    bio: props.user.bio,
+    email: props.user.email
   });
 
   const [showModal, setShowModal] = useState(false);
 
   function editProfile() {
-    const dataToSend = profile
-    console.log(dataToSend)
-    responseInterceptor()
+    // responseInterceptor()
     axios.post('http://localhost:3000/users/edit-profile/', profile, {withCredentials:true})
       .then(res => {
         window.location.reload(false);
@@ -61,7 +60,7 @@ function ProfilePageHeader(props) {
                   </div>
                   <div className="name">
                     <h4 className="title">
-                      {props.user.firstName} {props.user.lastName}
+                      {profile.firstName} {profile.lastName}
                     </h4>
                   </div>  
                 </Col>
@@ -69,7 +68,7 @@ function ProfilePageHeader(props) {
               <Row style={{marginTop:'1rem', marginBottom:'2rem'}}>
                 <Col className="ml-auto mr-auto text-center" md="6">
                   <p style={{color: 'white'}}>
-                    Email: {props.user.email}
+                    Email: {profile.email}
                   </p>
                 </Col>
               </Row>
@@ -87,15 +86,15 @@ function ProfilePageHeader(props) {
                 <form>
                   <div className="form-group">
                     <label htmlFor="firstName">First name</label>
-                    <input onChange={e => setProfile({...profile, firstName: e.target.value})} type="text" className="form-control" id="projectName" aria-describedby="passwordHelp" />
+                    <input value={profile.firstName} onChange={e => setProfile({...profile, firstName: e.target.value})} type="text" className="form-control" id="projectName" aria-describedby="passwordHelp" />
                   </div>
                   <div className="form-group">
                     <label htmlFor="lastName">Last name</label>
-                    <input type="text" onChange={ e => setProfile({...profile, lastName: e.target.value}) } className="form-control" id="lastName" />
+                    <input value={profile.lastName} type="text" onChange={ e => setProfile({...profile, lastName: e.target.value}) } className="form-control" id="lastName" />
                   </div>
                   <div className="form-group">
                     <label htmlFor="bio">Abuot you</label>
-                    <textarea onChange={ e => setProfile({...profile, bio: e.target.value}) } className="form-control" id="bioTextArea" rows={3} defaultValue={""} />
+                    <textarea value={profile.bio} onChange={ e => setProfile({...profile, bio: e.target.value}) } className="form-control" id="bioTextArea" rows={3} defaultValue={""} />
                   </div>
                 </form>
               </Modal.Body>

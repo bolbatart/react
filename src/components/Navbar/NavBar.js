@@ -88,11 +88,15 @@ function NavBar() {
               <NavLink href="/">Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/">Projects</NavLink>
+              <NavLink href="/projects">Projects</NavLink>
             </NavItem>
             {
               useSelector(state => state.authReducer.loggedIn) 
               ?
+              <>
+              <NavItem>
+                <NavLink href="/my-profile">My profile</NavLink>
+              </NavItem>
               <NavItem>
                 <Button
                   onClick={() => dispatch(logoutActions.logout())}
@@ -102,6 +106,7 @@ function NavBar() {
                   Sign Out
                 </Button>
               </NavItem>
+              </>
               :
               <React.Fragment>
                 <NavItem>

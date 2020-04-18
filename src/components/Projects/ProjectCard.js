@@ -20,7 +20,7 @@ const ProjectCard = (props) => {
   const [deleteError, setDeleteError] = useState('')
 
   function deleteProject() {
-    responseInterceptor();
+    // responseInterceptor();
     axios.delete('http://localhost:3000/projects/delete/' + props.project._id, { withCredentials:true })
       .then(res => {
         window.location.reload(false);
@@ -85,7 +85,7 @@ const ProjectCard = (props) => {
             </div>
           }
         </Row>
-          <h3>Project name</h3>
+          <h3> {props.project.name} </h3>
           <CardText>
             {props.project.shortDescription}
           </CardText>
