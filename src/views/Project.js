@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ProjectHeader from './../components/Headers/ProjectHeader';
-import NavBar from './../components/Navbar/NavBar';
+import NavBar from '../components/HeaderMenu/NavBar';
 import Footer from '../components/Footer/Footer';
 import { Container, Col, Row } from 'reactstrap';
 import { useState, useEffect } from 'react';

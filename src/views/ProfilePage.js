@@ -8,7 +8,7 @@ import {
 } from "reactstrap";
 
 // core components
-import Navbar from "../components/Navbar/NavBar";
+import Navbar from "../components/HeaderMenu/NavBar";
 import ProfilePageHeader from "../components/Headers/ProfilePageHeader.js";
 import ProjectsCarousel from "../components/ProfilePage/ProjcetsCarousel"
 import Footer from "../components/Footer/Footer";

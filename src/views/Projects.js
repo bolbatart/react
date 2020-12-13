@@ -5,11 +5,14 @@ import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 
 
 // core components
-import Navbar from "../components/Navbar/NavBar";
+import Navbar from "../components/HeaderMenu/NavBar";
 import Footer from "../components/Footer/Footer";
 import ProjectsListHeader from '../components/Headers/ProjectsListHeader';
-import Pagination from './../components/Pagination';
+// import Pagination from './../components/Pagination';
 import ProjectsList from './../components/Projects/ProjectsList';
+import ProjectsHeader from 'components/Projects/ProjectHeader';
+import Pagination from '@material-ui/lab/Pagination';
+import styled from "styled-components";
 
 function Projects() { 
   
@@ -46,25 +49,29 @@ function Projects() {
       })
   }
 
-  // styles
-  const blackText = {
-    color:'black', 
-    fontWeight:'400'
-  }
-  const ulStyle = {
-    listStyleType:'none', 
-    listStylePosition:'inside', 
-    margin:'0', 
-    padding: '0rem', 
-    color:'black', 
-    fontWeight:'400'
-  }
+
   return (
-    <>
-      <Navbar />
-      <ProjectsListHeader handleSubmit={handleFilterSubmit} />
-      <div>
+    <StyledProjects>
+      {/* <ProjectsListHeader handleSubmit={handleFilterSubmit} /> */}
+      <ProjectsHeader />
+      <div className="projects-container">
+        
+        <div className="projects-list">
+          <h2 className='projects-list__title'>Find an existing project to work on!</h2>
+         <ProjectsList projects={currentPosts} />
+        </div>
+        
+        <div className="projects-pagination">
+          <Pagination count={10} />
+        </div>
+      </div>
+
+
+
+      {/* MAIN */}
+      {/* <div>
         <Container>
+          
           <Row style={{marginTop: '4rem', marginBottom:'4 rem'}}>
             <Col>
               <h4>Sort by</h4>
@@ -92,16 +99,40 @@ function Projects() {
               </Form>
             </Col>
           </Row>
+
           <ProjectsList projects={currentPosts} />
+
           <Pagination 
             postsPerPage={postsPerPage}
             totalPosts={projects.length}
             paginate={paginate} />
+
         </Container>
-      </div>
-      <Footer />
-    </>
+      </div> */}
+      {/* <Footer /> */}
+    </StyledProjects>
   );
 }
 
 export default Projects;
+
+const StyledProjects = styled.div`
+  padding: 0 0 64px;
+  .projects-pagination {
+    display: flex;
+    justify-content: center;
+  }
+
+  .projects-list {
+    margin: 64px 128px;
+    &__title{
+      margin: 0 0 48px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .projects-list {
+      margin: 64px;
+    } 
+  }
+`;

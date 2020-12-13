@@ -1,3 +1,5 @@
+// ----- OLD -----
+
 import React, { Component } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import * as logoutActions from '../../store/actions/auth/logout'
@@ -56,7 +58,7 @@ function NavBar() {
 
   const dispatch = useDispatch();
   return (
-    <Navbar className={classnames("fixed-top", navbarColor)} expand="lg">
+    <Navbar style={{padding: 0}} className={classnames("fixed-top", navbarColor)} expand="lg">
       <Container>
         <div className="navbar-translate">
           <NavbarBrand

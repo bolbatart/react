@@ -18,7 +18,7 @@ import {
 import { Spinner } from 'react-bootstrap';
 
 // core components
-import Navbar from "../components/Navbar/NavBar";
+import Navbar from "../components/HeaderMenu/NavBar";
 import ProfilePageHeader from "../components/Headers/ProfilePageHeader.js";
 import ProjectsCarousel from "../components/ProfilePage/ProjcetsCarousel"
 import Footer from "../components/Footer/Footer";
@@ -28,25 +28,25 @@ function MyProfile(props) {
   
   const [projects, setProjects] = useState([]);
   const [user, setUser] = useState({})
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    props.removeProjectFromReduxStore()
-    if(props.loggedIn) {
-      axios.get('http://localhost:3000/users/profile/' + props.loggedIn)
-        .then( res => {
-          setUser(res.data.user)
-          setProjects(res.data.projects)
-          setLoading(false);
-        })
-        .catch( err => {
-          console.log(err)
-        })  
-    }
-    else {
-      history.push('')
-    }
-  }, []);
+  // useEffect(() => {
+  //   props.removeProjectFromReduxStore()
+  //   if(props.loggedIn) {
+  //     axios.get('http://localhost:3000/users/profile/' + props.loggedIn)
+  //       .then( res => {
+  //         setUser(res.data.user)
+  //         setProjects(res.data.projects)
+  //         setLoading(false);
+  //       })
+  //       .catch( err => {
+  //         console.log(err)
+  //       })  
+  //   }
+  //   else {
+  //     history.push('')
+  //   }
+  // }, []);
 
   function addProject() {
     window.open('http://localhost:4200/create-project', "_blank")
